@@ -1,0 +1,71 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+group = 'study.springboot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+ext['h2.version'] = '1.4.197'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// 20200215 data-envers는 2.2.3.RELEASE 받아옴.
+	implementation 'org.springframework.data:spring-data-envers:2.2.2.RELEASE'
+
+	implementation 'com.querydsl:querydsl-jpa:4.2.1'
+	implementation 'com.querydsl:querydsl-apt:4.1.4'
+
+	implementation 'org.flywaydb:flyway-core'
+
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java:8.0.19'
+
+	// TODO
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation('org.springframework.security:spring-security-test')
+}
+
+test {
+	useJUnitPlatform()
+}
+
+// queryDsl
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+	jpa = true
+	querydslSourcesDir = querydslDir
+}
+sourceSets {
+	main.java.srcDir querydslDir
+}
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+
+

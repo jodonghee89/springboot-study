@@ -1,0 +1,54 @@
+server:
+  address: localhost
+  port: 8080
+  compression.enabled: true
+#  error:
+#    include-stacktrace: always
+#    path: /error
+#    whitelabel.enabled: true
+  servlet:
+    session:
+      cookie:
+        name: JSESSIONID
+      persistent: true
+  tomcat:
+    accept-count: 100
+    max-connections: 10000
+    max-threads: 200
+    max-http-form-post-size: 2MB
+    max-swallow-size: 2MB
+    accesslog:
+      enabled: true
+      max-days: 1
+      directory: ~/fastcampus/logs
+      prefix: access_log
+      suffix: .log
+    connection-timeout: 3s
+    resource:
+      allow-caching: true
+      cache-ttl: 1d
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    servlet:
+      path: /
+  mustache:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .mustache
+  # TODO
+
+
+logging:
+  level:
+    root: info
+#    com.querydsl.sql: DEBUG
+#    org.hibernate: debug
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.hibernate.persister.collection: debug
+
+
+
+

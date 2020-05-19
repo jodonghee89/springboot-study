@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="springboot-workspace.handson-03-10.main" target="11" />
+      <module name="springboot-workspace.handson-03-10.querydsl" target="11" />
+      <module name="springboot-workspace.handson-03-10.test" target="11" />
+      <module name="springboot-workspace.handson-03-11.main" target="11" />
+      <module name="springboot-workspace.handson-03-11.querydsl" target="11" />
+      <module name="springboot-workspace.handson-03-11.test" target="11" />
+      <module name="springboot-workspace.handson-03-4.main" target="11" />
+      <module name="springboot-workspace.handson-03-4.test" target="11" />
+      <module name="springboot-workspace.handson-03-5.main" target="11" />
+      <module name="springboot-workspace.handson-03-5.test" target="11" />
+      <module name="springboot-workspace.handson-03-7.main" target="11" />
+      <module name="springboot-workspace.handson-03-7.querydsl" target="11" />
+      <module name="springboot-workspace.handson-03-7.test" target="11" />
+      <module name="springboot-workspace.handson-03-8.main" target="11" />
+      <module name="springboot-workspace.handson-03-8.querydsl" target="11" />
+      <module name="springboot-workspace.handson-03-8.test" target="11" />
+      <module name="springboot-workspace.handson-03-9.main" target="11" />
+      <module name="springboot-workspace.handson-03-9.querydsl" target="11" />
+      <module name="springboot-workspace.handson-03-9.test" target="11" />
+      <module name="springboot-workspace.handson-04-1.main" target="11" />
+      <module name="springboot-workspace.handson-04-1.querydsl" target="11" />
+      <module name="springboot-workspace.handson-04-1.test" target="11" />
+      <module name="springboot-workspace.handson-05-1.main" target="11" />
+      <module name="springboot-workspace.handson-05-1.querydsl" target="11" />
+      <module name="springboot-workspace.handson-05-1.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

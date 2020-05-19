@@ -1,0 +1,13 @@
+rootProject.name = 'springboot-workspace'
+
+//include("handson-03-4")
+//include("handson-03-5")
+include("handson-03-6")
+//include("handson-03-7")
+//include("handson-03-8")
+//include("handson-03-9")
+//include("handson-03-10")
+//include("handson-03-11")
+//include("handson-04-1")
+//include("handson-05-1")
+

@@ -1,0 +1,16 @@
+{{#layout}}
+<div class="row">
+    <div class="col-12 text-center">
+        {{#hasImage}}
+            <img src="/static/image/{{statusCode}}.jpg">
+        {{/hasImage}}
+        {{#statusCode}}
+            <h2>{{statusCode}}</h2>
+        {{/statusCode}}
+        {{^statusCode}}
+        <h2> unknown </h2>
+        {{/statusCode}}
+    </div>
+</div>
+{{/layout}}
+{{>layout}}

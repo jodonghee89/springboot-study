@@ -1,0 +1,42 @@
+{{#layout}}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="/account/list/list">Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">View</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-hover">
+            <tr>
+                <th>이름</th>
+                <td>{{account.username}}</td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>{{account.password}}</td>
+            </tr>
+            <tr>
+                <th>권한</th>
+                <td> {{#account.roles}} {{.}} {{/account.roles}} </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-right">
+        <form method="post" action="/account/delete?id={{account.id}}">
+            <a href="/account/update?id={{account.id}}" class="btn btn-primary">update</a>
+            <button type="submit" class="btn btn-primary">delete</button>
+            <a href="/account/list" class="btn btn-primary">list</a>
+        </form>
+    </div>
+</div>
+{{/layout}}
+{{>layout}}
+

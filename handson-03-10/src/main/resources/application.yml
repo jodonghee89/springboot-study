@@ -1,0 +1,82 @@
+server:
+  address: localhost
+  port: 8080
+  compression.enabled: true
+#  error:
+#    include-stacktrace: always
+#    path: /error
+#    whitelabel.enabled: true
+  servlet:
+    session:
+      cookie:
+        name: JSESSIONID
+      persistent: true
+  tomcat:
+    accept-count: 100
+    max-connections: 10000
+    max-threads: 200
+    max-http-form-post-size: 2MB
+    max-swallow-size: 2MB
+    accesslog:
+      enabled: true
+      max-days: 1
+      directory: ~/fastcampus/logs
+      prefix: access_log
+      suffix: .log
+    connection-timeout: 3s
+    resource:
+      allow-caching: true
+      cache-ttl: 1d
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    servlet:
+      path: /
+  mustache:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .mustache
+  devtools:
+    restart:
+      enabled: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+  datasource:
+    platform: h2
+    driver-class-name: org.h2.Driver
+    url: "jdbc:h2:mem:test;MODE=MySQL;"
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: true
+    show-sql: true
+    hibernate:
+#      ddl-auto: create-drop
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    locations: "classpath:db/migration"
+#    enabled: true
+
+
+logging:
+  level:
+    root: info
+#    com.querydsl.sql: DEBUG
+#    org.hibernate: debug
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    org.hibernate.persister.collection: debug
+
+
+
+

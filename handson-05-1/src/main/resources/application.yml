@@ -1,0 +1,78 @@
+server:
+  address: localhost
+  port: 8080
+  compression.enabled: true
+#  error:
+#    include-stacktrace: always
+#    path: /error
+#    whitelabel.enabled: true
+  servlet:
+    session:
+      cookie:
+        name: JSESSIONID
+      persistent: true
+  tomcat:
+    accept-count: 100
+    max-connections: 10000
+    max-threads: 200
+    max-http-form-post-size: 2MB
+    max-swallow-size: 2MB
+    accesslog:
+      enabled: true
+      max-days: 1
+      directory: ~/fastcampus/logs
+      prefix: access_log
+      suffix: .log
+    connection-timeout: 3s
+    resource:
+      allow-caching: true
+      cache-ttl: 1d
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+    servlet:
+      path: /
+  mustache:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .mustache
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      format_sql: true
+      generate_statistics: true
+      cache:
+        use_query_cache: true
+        use_second_level_cache: true
+        provider_class: org.hibernate.cache.EhCacheProvider
+        region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+      javax.cache.uri: "/ehcache-hibernate.xml"
+    properties:
+      hibernate:
+        format_sql: true
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+
+# TODO
+
+logging:
+  level:
+    root: info
+    com.querydsl.sql: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.persister.collection: debug
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: DEBUG
+    org.hibernate:
+      cache: DEBUG
+      stat: DEBUG
+    net.sf.ehcache: DEBUG
+
+
+
+

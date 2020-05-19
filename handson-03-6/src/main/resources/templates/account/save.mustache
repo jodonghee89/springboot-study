@@ -1,0 +1,58 @@
+{{#layout}}
+<div class="row">
+    <div class="col-12">
+        <form action="/account/save" method="post">
+            <input type="hidden" class="form-control" placeholder="Enter username" name="id" id="id" value="{{account.id}}">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="Enter username" id="username" name="username" value="{{account.username}}">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control" placeholder="Enter password" id="password" name="password" value="{{account.password}}">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="roles" id="role_user" value="USER">
+                <label>User</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="roles" id="role_admin" value="ADMIN">
+                <label>Admin</label>
+            </div>
+            <p></p>
+            {{#hasError}}
+            <div class="alert alert-danger">
+                {{#errors}}
+                    {{.}}<br/>
+                {{/errors}}
+            </div>
+            {{/hasError}}
+            <div class="row">
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">submit</button>
+                    <a class="btn btn-primary" href="/account/list">list</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+{{#json}}
+var account = {{{json}}};
+if(account) {
+    document.querySelector('#id').value = account.id;
+    document.querySelector('#username').value = account.username;
+    document.querySelector('#password').value = account.password;
+    var roles = account.roles;
+    for (var i=0; i< roles.length; i++) {
+        let selector = '#role_' + roles[i].toLowerCase();
+        console.log(document.querySelector(selector))
+        document.querySelector(selector).checked = true;
+    }
+}
+{{/json}}
+</script>
+
+{{/layout}}
+{{>layout}}

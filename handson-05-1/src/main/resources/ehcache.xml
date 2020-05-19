@@ -1,0 +1,27 @@
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd"
+        xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
+
+    <service>
+        <jsr107:defaults enable-statistics="true"/>
+    </service>
+
+    <cache alias="service.user.page" uses-template="default"></cache>
+
+    <cache alias="repository.user.page" uses-template="default"></cache>
+
+    <cache-template name="default">
+        <expiry>
+            <ttl unit="seconds">1000</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">2000</heap>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache-template>
+
+
+
+</config>

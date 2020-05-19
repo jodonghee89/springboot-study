@@ -1,0 +1,119 @@
+{{#layout}}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><a href="/user/list">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">List</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form action="/user" method="get">
+            <div class="row">
+                <div class="col">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="username">
+                </div>
+                <div class="col">
+                    <select name="role" id="role" class="form-control">
+                        <option value="">선택</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="USER">USER</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-right">
+                    <button type="submit" class="btn btn-info">search</button>
+                    <a href="/user/create" class="btn btn-primary">create</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-12 text-left">
+        total: <span id="total_count"></span>
+    </div>
+</div>
+<p></p>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">username</th>
+                <th scope="col">password</th>
+                <th scope="col">roles</th>
+                <th scope="col">createdBy</th>
+                <th scope="col">createdAt</th>
+                <th scope="col">updatedBy</th>
+                <th scope="col">updatedAt</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#list}}
+            <tr>
+                <td scope="row"><small>{{id}}</small></td>
+                <td><small><a href="/user/view?id={{id}}">{{username}}</a></small></td>
+                <td><small>{{password}}</small></td>
+                <td><small>{{textOfRoles}}</small> </td>
+                <td><small>{{createdBy}}</small></td>
+                <td><small>{{createdAt}}</small></td>
+                <td><small>{{updatedBy}}</small></td>
+                <td><small>{{updatedAt}}</small></td>
+            </tr>
+            {{/list}}
+            {{^list}}
+            <tr>
+                <td colspan="8" class="text-center">데이터가 없습니다.</td>
+            </tr>
+            {{/list}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" id="pagination-column">
+    </div>
+</div>
+<script type="text/template" id="pagination">
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item <%= hasPrev ? '' : 'disabled'  %>">
+                <a class="page-link" href="/user?page=<%= startPageNum - 1 %>&username=<%=username%>&role=<%=role%>">Previous</a>
+            </li>
+            <% _.forEach(pageNums, function(pageNum) { %>
+            <li class="page-item  <%= pageNum == currentPage ? 'active' : ''  %>">
+                <a class="page-link" href="/user?page=<%= pageNum %>&username=<%=username%>&role=<%=role%>"><%= pageNum + 1 %></a>
+            </li>
+            <% }) %>
+            <li class="page-item <%= hasNext ? '' : 'disabled'  %>">
+                <a class="page-link" href="/user?page=<%= endPageNum + 1 %>&username=<%=username%>&role=<%=role%>">Next</a>
+            </li>
+        </ul>
+    </nav>
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.js"></script>
+{{#page}}
+<script>
+    var json = {{{ page }}};
+    var searchJson = {{{search}}}
+    json.username = searchJson.username;
+    json.role = searchJson.role;
+    var searchJson = {{{ search }}};
+    var textContent = document.querySelector("#pagination").textContent;
+    var compiled = _.template(textContent);
+    document.querySelector('#pagination-column').innerHTML = compiled(json)
+    document.querySelector('#total_count').innerHTML = json.totalCount;
+    document.querySelector('#username').value = searchJson.username;
+    if(searchJson.role) document.querySelector('#role').value = searchJson.role;
+</script>
+{{/page}}
+{{/layout}}
+{{>layout}}
